@@ -2,9 +2,15 @@
 
 Chipotle makes the spicy, SOAP-flavored Tipalti API and seasons it with modern PHP. Now, you can perform common Tipalti functions from PHP 7.3+ without having to learn about SOAP.
 
+# Setup
+This package requires PHP 7.3+ and the SOAP extension. Install it in your project with:
+```shell
+composer require nextnetmedia\tipalti-chipotle
+```
+
 # Sending a Single Invoice
 
-```
+```injectablephp
 use Nextnetmedia\Chipotle\TipaltiPayer;
 use Nextnetmedia\Chipotle\NewInvoice;
 
@@ -31,4 +37,18 @@ $invoice->setFields(['relatedcustomer'=>813114, 'relatedworkorder'=>83123]);
 
 // Now, our invoice is ready to send!
 $invoice->send();
+```
+
+# Getting the Payee iFrames
+```injectablephp
+use Nextnetmedia\Chipotle\TipaltiPayer;
+use Nextnetmedia\Chipotle\iFrame;
+
+// Initialize a TipaltiPayer client with your sandbox API key, your payer name, your payer entity name (if used), and an automatic prefix to append to IDAP and refcodes (which can be helpful when using Tipalti for multiple brands or businesses/payer entities that could have conflicting names or ID's)
+$payer = new TipaltiPayer('your-api-key', 'YourPayerName', false, 'YourPayerEntityName', 'TEST-', 'TESTBILL-');
+
+$iframe = new iFrame($payer);
+echo $iframe->getPayeeHome('187'); // returns the onboarding and payout/tax settings iFrame for user 187 from your local system
+echo $iframe->getPayeePaymentHistory('187'); // returns the payment history iFrame for user 187 from your local system
+echo $iframe->getPayeeInvoiceHistory('187'); // returns the invoice history iFrame for user 187 from your local system
 ```

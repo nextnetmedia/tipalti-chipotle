@@ -3,10 +3,14 @@
 namespace Nextnetmedia\Chipotle;
 
 use Exception;
+use SoapFault;
+use Nextnetmedia\Tipalti\Authentication\EncryptionKey;
 use Nextnetmedia\Tipalti\PayerClient;
 use Nextnetmedia\Tipalti\Resource\ArrayOfTipaltiInvoiceItemRequest;
-use SoapFault;
 
+/**
+ * Tipalti base client for Payer functions, used for invoices and iFrame URL generation
+ */
 class TipaltiPayer
 {
     /**
@@ -20,28 +24,43 @@ class TipaltiPayer
     /**
      * @var string|null
      */
-    protected $idapPrefix;
+    private $idapPrefix;
     /**
      * @var string|null
      */
     private $refcodePrefix;
+    /**
+     * @var string
+     */
+    private $payerName;
+    /**
+     * @var bool
+     */
+    private $production;
+    /**
+     * @var string
+     */
+    private $apiKey;
 
     /**
      * @throws Exception
      */
-    public function __construct(string $apiKey, string $payerName, bool $production, ?string $payerEntityName = "", ?string $idapPrefix = "", ?string $refcodePrefix = "")
+    public function __construct(string $apiKey, string $payerName, bool $production = false, ?string $payerEntityName = "", ?string $idapPrefix = "", ?string $refcodePrefix = "")
     {
+        $this->apiKey = $apiKey;
+        $this->payerName = $payerName;
+        $this->production = $production;
+        $this->idapPrefix = $idapPrefix;
+        $this->refcodePrefix = $refcodePrefix;
+        $this->payerEntityName = $payerEntityName;
         try {
             $this->client = new PayerClient($apiKey, $payerName, $production);
         } catch (SoapFault $e) {
-            // Change SoapFault to Exception so that clients don't need to worry about SoapFaults
+            // Change SoapFault to Exception so that clients don't need to worry about catching SoapFaults
             throw new Exception("Tipalti Payer Client SOAP Fault: " . $e->getMessage());
         } catch (Exception $e) {
             throw new Exception("Tipalti Payer Client Initialization Error: " . $e->getMessage());
         }
-        $this->idapPrefix = $idapPrefix;
-        $this->refcodePrefix = $refcodePrefix;
-        $this->payerEntityName = $payerEntityName;
     }
 
     /**
@@ -83,5 +102,31 @@ class TipaltiPayer
     {
         $this->client->CreateOrUpdateInvoices($arrayOfTipaltiInvoiceItemRequest);
         return true;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isProduction(): bool
+    {
+        return $this->production;
+    }
+
+    /**
+     * @param array $queryArray
+     * @return string
+     */
+    public function buildEncryptedQueryString(array $queryArray): string
+    {
+        $queryArray['hashkey'] = EncryptionKey::generateHmac(http_build_query($queryArray), $this->getApiKey());
+        return http_build_query($queryArray);
+    }
+
+    /**
+     * @return string
+     */
+    private function getApiKey(): string
+    {
+        return $this->apiKey;
     }
 }

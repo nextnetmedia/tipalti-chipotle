@@ -9,7 +9,8 @@
     },
     "require": {
         "php": ">=7.3.25",
-        "nextnetmedia/tipalti":"^1.0.1"
+        "nextnetmedia/tipalti":"^1.0.1",
+        "ext-soap": "*"
     },
     "require-dev": {
         "styleci/cli": "^1.3"

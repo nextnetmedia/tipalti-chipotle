@@ -11,6 +11,9 @@ use Nextnetmedia\Tipalti\Resource\InvoiceLine;
 use Nextnetmedia\Tipalti\Resource\KeyValuePair;
 use Nextnetmedia\Tipalti\Resource\TipaltiInvoiceItemRequest;
 
+/**
+ * Build and send an invoice to Tipalti
+ */
 class NewInvoice
 {
     /**

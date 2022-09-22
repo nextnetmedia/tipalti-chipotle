@@ -2,46 +2,97 @@
 
 namespace Nextnetmedia\Chipotle;
 
+use Exception;
+
+/**
+ * Get Payee iFrame URLs for Tipalti payees
+ */
 class iFrame
 {
     /**
      * @var TipaltiPayer
      */
     private $client;
-    /**
-     * @var string
-     */
-    private $iFrameBaseUrl;
 
+    /**
+     *
+     */
+    private const IFRAME_BASE_URLS = [
+      "production" => "https://ui2.tipalti.com/",
+      "sandbox" => "https://ui2.sandbox.tipalti.com/"
+    ];
+
+    /**
+     *
+     */
+    private const IFRAME_PATHS = [
+      "home" => "payeedashboard/home",
+      "invoices" => "PayeeDashboard/Invoices",
+      "payments" => "PayeeDashboard/PaymentsHistory"
+    ];
+
+    /**
+     * @param TipaltiPayer $client
+     */
     public function __construct(TipaltiPayer $client)
     {
         $this->client = $client;
-        $this->iFrameBaseUrl = $this->client->production ? "https://ui2.tipalti.com/" : "https://ui2.sandbox.tipalti.com/";
     }
 
+    /**
+     * @param string $payeeIdentifier
+     * @param array $extraParameters
+     * @return string
+     * @throws Exception
+     */
     public function getPayeeHome(string $payeeIdentifier, array $extraParameters = []): string
     {
         return $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters);
     }
 
+    /**
+     * @param string $payeeIdentifier
+     * @param array $extraParameters
+     * @return string
+     * @throws Exception
+     */
     public function getPayeeInvoiceHistory(string $payeeIdentifier, array $extraParameters = []): string
     {
         return $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters);
     }
 
+    /**
+     * @param string $payeeIdentifier
+     * @param array $extraParameters
+     * @return string
+     * @throws Exception
+     */
     public function getPayeePaymentHistory(string $payeeIdentifier, array $extraParameters = []): string
     {
-        return $this->getiFrameUrl("history", $payeeIdentifier, $extraParameters);
+        return $this->getiFrameUrl("payments", $payeeIdentifier, $extraParameters);
     }
 
+    /**
+     * @throws Exception
+     */
     public function getiFrameUrl(string $type, string $payeeIdentifier, array $extraParameters = []): string
     {
-        /*
         $queryString = $extraParameters;
         $queryString["ts"] = time();
         $queryString["idap"] = empty($this->client->getIdapPrefix()) ? $payeeIdentifier : $this->client->getIdapPrefix() . $payeeIdentifier;;
         $queryString["payer"] = $this->client->getPayerName();
-        return $this->iframeBaseUrl($type) . "?" . $this->buildEncryptedQueryString($queryString);
-        */
+        return $this->getiFrameBasePath($type) . "?" . $this->client->buildEncryptedQueryString($queryString);
     }
+
+    /**
+     * @throws Exception
+     */
+    private function getiFrameBasePath(string $type): string
+    {
+        $baseurl = ($this->client->isProduction()) ? self::IFRAME_BASE_URLS["production"] : self::IFRAME_BASE_URLS["sandbox"];
+        if(!isset(self::IFRAME_PATHS[$type])) throw new Exception('Invalid iFrame type specified');
+        $path = self::IFRAME_PATHS[$type];
+        return $baseurl . $path;
+    }
+
 }
