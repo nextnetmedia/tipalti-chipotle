@@ -79,7 +79,8 @@ class iFrame
     {
         $queryString = $extraParameters;
         $queryString["ts"] = time();
-        $queryString["idap"] = empty($this->client->getIdapPrefix()) ? $payeeIdentifier : $this->client->getIdapPrefix() . $payeeIdentifier;;
+        $queryString["idap"] = empty($this->client->getIdapPrefix()) ? $payeeIdentifier : $this->client->getIdapPrefix() . $payeeIdentifier;
+        ;
         $queryString["payer"] = $this->client->getPayerName();
         return $this->getiFrameBasePath($type) . "?" . $this->client->buildEncryptedQueryString($queryString);
     }
@@ -90,9 +91,10 @@ class iFrame
     private function getiFrameBasePath(string $type): string
     {
         $baseurl = ($this->client->isProduction()) ? self::IFRAME_BASE_URLS["production"] : self::IFRAME_BASE_URLS["sandbox"];
-        if(!isset(self::IFRAME_PATHS[$type])) throw new Exception('Invalid iFrame type specified');
+        if (!isset(self::IFRAME_PATHS[$type])) {
+            throw new Exception('Invalid iFrame type specified');
+        }
         $path = self::IFRAME_PATHS[$type];
         return $baseurl . $path;
     }
-
 }
