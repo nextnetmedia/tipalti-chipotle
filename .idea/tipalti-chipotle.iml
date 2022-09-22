@@ -11,7 +11,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/haydenpierce/class-finder" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/cache" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/styleci/cli" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

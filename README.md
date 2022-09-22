@@ -1,11 +1,11 @@
 # 🌶 Chipotle, the tasty way to use Tipalti with PHP
 
-Chipotle makes the spicy, SOAP-flavored Tipalti API and seasons it with modern PHP. Now, you can perform common Tipalti functions from PHP 7.3+ without having to learn about SOAP.
+Chipotle makes the spicy, SOAP-flavored Tipalti API and seasons it with modern PHP. Now, you can perform common Tipalti functions from PHP 7.3+ without having to deal with SOAP.
 
 # Setup
-This package requires PHP 7.3+ and the SOAP extension. Install it in your project with:
+This package requires PHP 7.3+ and the SOAP extension (which may not be installed by default in your PHP installation). Install it in your project with:
 ```shell
-composer require nextnetmedia\tipalti-chipotle
+composer require nextnetmedia/tipalti-chipotle
 ```
 
 # Sending a Single Invoice

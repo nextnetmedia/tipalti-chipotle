@@ -13,6 +13,8 @@ use Nextnetmedia\Tipalti\Resource\TipaltiInvoiceItemRequest;
 
 /**
  * Build and send an invoice to Tipalti
+ *
+ * @todo Add support for the invoice parameters that are not yet supported: internalInvoiceNotes, apAccountNumber, etc.
  */
 class NewInvoice
 {
@@ -74,18 +76,6 @@ class NewInvoice
     private $isPaidManually = false;
 
     /**
-     * Tipalti fields we don't handle yet.
-     * @todo Add support for invoice fields that are not yet supported.
-     */
-    private $internalInvoiceNotes;
-    private $apAccountNumber;
-    private $invoiceNumber;
-    private $approvers;
-    private $invoiceStatus;
-    private $incomeType;
-    private $ManualPaymentDetails;
-
-    /**
      * @throws Exception
      */
     public function __construct(TipaltiPayer $client)
@@ -96,11 +86,12 @@ class NewInvoice
     /**
      * @throws Exception
      */
-    public function send(): void
+    public function send(): bool
     {
         $invoices = new ArrayOfTipaltiInvoiceItemRequest();
         $invoices[] = $this->getInvoiceItemRequest();
         $this->client->callCreateOrUpdateInvoices($invoices);
+        return true;
     }
 
     /**

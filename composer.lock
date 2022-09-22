@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4a836a5c65b2a7fac906d73aa881bcee",
+    "content-hash": "32d07818388b6ee7c434af16912ee471",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -202,16 +202,16 @@
         },
         {
             "name": "nextnetmedia/tipalti",
-            "version": "1.0.1.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextnetmedia/tipalti.git",
-                "reference": "66034b794357225a8f82bd69a5d5def875059d16"
+                "reference": "297368706afd7bfeaf409656e1ca87f4c0d70709"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextnetmedia/tipalti/zipball/66034b794357225a8f82bd69a5d5def875059d16",
-                "reference": "66034b794357225a8f82bd69a5d5def875059d16",
+                "url": "https://api.github.com/repos/nextnetmedia/tipalti/zipball/297368706afd7bfeaf409656e1ca87f4c0d70709",
+                "reference": "297368706afd7bfeaf409656e1ca87f4c0d70709",
                 "shasum": ""
             },
             "require": {
@@ -235,9 +235,9 @@
             "description": "Simple PHP implementation of the Tipalti iFrame and SOAP APIs",
             "support": {
                 "issues": "https://github.com/nextnetmedia/tipalti/issues",
-                "source": "https://github.com/nextnetmedia/tipalti/tree/1.0.1.1"
+                "source": "https://github.com/nextnetmedia/tipalti/tree/1.0.2"
             },
-            "time": "2022-09-22T13:42:24+00:00"
+            "time": "2022-09-22T15:09:34+00:00"
         },
         {
             "name": "psr/cache",
@@ -289,60 +289,15 @@
             "time": "2021-02-03T23:26:27+00:00"
         }
     ],
-    "packages-dev": [
-        {
-            "name": "styleci/cli",
-            "version": "v1.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/StyleCI/CLI.git",
-                "reference": "943bd1851a4e98c0f7f3ca4d6e5ec4cc9934a6a7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/StyleCI/CLI/zipball/943bd1851a4e98c0f7f3ca4d6e5ec4cc9934a6a7",
-                "reference": "943bd1851a4e98c0f7f3ca4d6e5ec4cc9934a6a7",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "ext-zlib": "*",
-                "php": "^7.2.5 || ^8.0"
-            },
-            "suggest": {
-                "ext-curl": "Required for high performance HTTP transport"
-            },
-            "bin": [
-                "bin/styleci"
-            ],
-            "type": "library",
-            "extra": {
-                "bin-dir": "bin"
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "StyleCI",
-                    "email": "support@styleci.io"
-                }
-            ],
-            "description": "The CLI tool for StyleCI",
-            "support": {
-                "source": "https://github.com/StyleCI/CLI/tree/v1.3.2"
-            },
-            "time": "2022-06-22T09:40:17+00:00"
-        }
-    ],
+    "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.3.25"
+        "php": ">=7.3.25",
+        "ext-soap": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
