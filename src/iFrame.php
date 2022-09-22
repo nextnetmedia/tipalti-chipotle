@@ -48,7 +48,7 @@ class iFrame
      */
     public function getPayeeHome(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters) :  $this->getiFrameHTML("home", $payeeIdentifier, $extraParameters);
+        return !$fullHtml ? $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("home", $payeeIdentifier, $extraParameters);
     }
 
     /**
@@ -60,7 +60,7 @@ class iFrame
      */
     public function getPayeeInvoiceHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters) :  $this->getiFrameHTML("invoices", $payeeIdentifier, $extraParameters);
+        return !$fullHtml ? $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("invoices", $payeeIdentifier, $extraParameters);
     }
 
     /**
@@ -72,7 +72,7 @@ class iFrame
      */
     public function getPayeePaymentHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("payments", $payeeIdentifier, $extraParameters) :  $this->getiFrameHTML("payments", $payeeIdentifier, $extraParameters);
+        return !$fullHtml ? $this->getiFrameUrl("payments", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("payments", $payeeIdentifier, $extraParameters);
     }
 
     /**
@@ -118,6 +118,6 @@ class iFrame
     public function getiFrameHTML(string $type, string $payeeIdentifier, array $extraParameters = [], string $style = "border: none; margin-top: 20px; margin-bottom: 20px;"): string
     {
         $url = $this->getiFrameUrl($type, $payeeIdentifier, $extraParameters);
-        return '<iframe width="100%" height="200" style="'.$style.'" src="'.$url.'" id="tipaltiEmbed"></iframe><script>tipaltiiFrameResize=function(t){t.data&&t.data.TipaltiIframeInfo&&t.data.TipaltiIframeInfo.height&&(document.getElementById("tipaltiEmbed").height=t.data.TipaltiIframeInfo.height)},window.addEventListener?window.addEventListener("message",tipaltiiFrameResize,!1):window.attachEvent("onmessage",tipaltiiFrameResize);</script>';
+        return '<iframe width="100%" height="200" style="' . $style . '" src="' . $url . '" id="tipaltiEmbed"></iframe><script>tipaltiiFrameResize=function(t){t.data&&t.data.TipaltiIframeInfo&&t.data.TipaltiIframeInfo.height&&(document.getElementById("tipaltiEmbed").height=t.data.TipaltiIframeInfo.height)},window.addEventListener?window.addEventListener("message",tipaltiiFrameResize,!1):window.attachEvent("onmessage",tipaltiiFrameResize);</script>';
     }
 }
