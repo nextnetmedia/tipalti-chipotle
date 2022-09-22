@@ -4,7 +4,6 @@ namespace Nextnetmedia\Chipotle;
 
 class iFrame
 {
-
     /**
      * @var TipaltiPayer
      */
@@ -20,22 +19,22 @@ class iFrame
         $this->iFrameBaseUrl = $this->client->production ? "https://ui2.tipalti.com/" : "https://ui2.sandbox.tipalti.com/";
     }
 
-    public function getPayeeHome(string $payeeIdentifier, array $extraParameters = []) : string
+    public function getPayeeHome(string $payeeIdentifier, array $extraParameters = []): string
     {
         return $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters);
     }
 
-    public function getPayeeInvoiceHistory(string $payeeIdentifier, array $extraParameters = []) : string
+    public function getPayeeInvoiceHistory(string $payeeIdentifier, array $extraParameters = []): string
     {
         return $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters);
     }
 
-    public function getPayeePaymentHistory(string $payeeIdentifier, array $extraParameters = []) : string
+    public function getPayeePaymentHistory(string $payeeIdentifier, array $extraParameters = []): string
     {
         return $this->getiFrameUrl("history", $payeeIdentifier, $extraParameters);
     }
 
-    public function getiFrameUrl(string $type, string $payeeIdentifier, array $extraParameters = []) : string
+    public function getiFrameUrl(string $type, string $payeeIdentifier, array $extraParameters = []): string
     {
         /*
         $queryString = $extraParameters;
