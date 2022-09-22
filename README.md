@@ -7,21 +7,28 @@ Chipotle makes the spicy, SOAP-flavored Tipalti API and seasons it with modern P
 ```
 use Nextnetmedia\Chipotle\TipaltiPayer;
 use Nextnetmedia\Chipotle\NewInvoice;
+
 // Initialize a TipaltiPayer client with your sandbox API key, your payer name, your payer entity name (if used), and an automatic prefix to append to IDAP and refcodes (which can be helpful when using Tipalti for multiple brands or businesses/payer entities that could have conflicting names or ID's)
 $payer = new TipaltiPayer('your-api-key', 'YourPayerName', false, 'YourPayerEntityName', 'TEST-', 'TESTBILL-');
+
 // Create a new invoice using your TipaltiPayer instance
 $invoice = new NewInvoice($payer);
+
 // Set the identifier which will be used as the IDAP (will have the the prefix specified for the payer prepended automatically, if supplied)
 $invoice->setPayeeIdentifier('187'); // User ID 187 from your local system
+
 // Set the invoice reference ID which will be used as the refcode (will have the prefix supplied for the payer prepended to it automatically if you supplied one)
 $invoice->setInvoiceIdentifier('9001'); // Invoice ID 9001 from your local system
+
 // Now, we add lines to the invoice
 $invoice->addLine(9.81, "Payment for services this week", ['externalid'=>10001]); // Here, we add an invoice line for $9.81 with a description of "payment for services this week", and the custom field (must be defined in Tipalti first) externalid set to 10001
 $invoice->addLine(18.31, "What I owe you from last week");
+
 // We can also add custom fields on the invoice itself
 $invoice->setField('relatedcustomer', 813114);
 // or 
 $invoice->setFields(['relatedcustomer'=>813114, 'relatedworkorder'=>83123]);
+
 // Now, our invoice is ready to send!
 $invoice->send();
 ```
