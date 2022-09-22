@@ -1,0 +1,17 @@
+{
+    "name": "nextnetmedia/tipalti-chipotle",
+    "description": "Chipotle is a wrapper around the Tipalti API, making working with Tipalti in PHP much easier",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Nextnetmedia\\Chipotle\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.3.25",
+        "nextnetmedia/tipalti":"^1.0.1"
+    },
+    "require-dev": {
+        "styleci/cli": "^1.3"
+    }
+}
