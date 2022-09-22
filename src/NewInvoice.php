@@ -3,7 +3,6 @@
 namespace Nextnetmedia\Chipotle;
 
 use DateTime;
-use Exception;
 use Nextnetmedia\Tipalti\Resource\ArrayOfInvoiceLine;
 use Nextnetmedia\Tipalti\Resource\ArrayOfKeyValuePair;
 use Nextnetmedia\Tipalti\Resource\ArrayOfTipaltiInvoiceItemRequest;
@@ -76,7 +75,7 @@ class NewInvoice
     private $isPaidManually = false;
 
     /**
-     * @throws Exception
+     * @param TipaltiPayer $client
      */
     public function __construct(TipaltiPayer $client)
     {
@@ -84,7 +83,7 @@ class NewInvoice
     }
 
     /**
-     * @throws Exception
+     * @return bool
      */
     public function send(): bool
     {

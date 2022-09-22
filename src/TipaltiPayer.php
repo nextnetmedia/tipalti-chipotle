@@ -43,6 +43,12 @@ class TipaltiPayer
     private $apiKey;
 
     /**
+     * @param string $apiKey
+     * @param string $payerName
+     * @param bool $production
+     * @param string|null $payerEntityName
+     * @param string|null $idapPrefix
+     * @param string|null $refcodePrefix
      * @throws Exception
      */
     public function __construct(string $apiKey, string $payerName, bool $production = false, ?string $payerEntityName = "", ?string $idapPrefix = "", ?string $refcodePrefix = "")
@@ -96,7 +102,8 @@ class TipaltiPayer
     }
 
     /**
-     * @throws Exception
+     * @param ArrayOfTipaltiInvoiceItemRequest $arrayOfTipaltiInvoiceItemRequest
+     * @return bool
      */
     public function callCreateOrUpdateInvoices(ArrayOfTipaltiInvoiceItemRequest $arrayOfTipaltiInvoiceItemRequest): bool
     {
