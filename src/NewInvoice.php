@@ -379,6 +379,7 @@ class NewInvoice
                     $customFields[] = $field;
                 }
             }
+            $arrayOfInvoiceLines[] = $invoiceLine;
         }
         return $arrayOfInvoiceLines;
     }
