@@ -378,6 +378,7 @@ class NewInvoice
                     $field->setValue($value);
                     $customFields[] = $field;
                 }
+                $invoiceLine->setCustomFields($customFields);
             }
             $arrayOfInvoiceLines[] = $invoiceLine;
         }
