@@ -39,7 +39,7 @@ class NewInvoice
      */
     private $fields = [];
     /**
-     * @var array<int, array{amount: float, description: ?string, customFields: array<string, string|int>}>
+     * @var array<int, array{netAmount: float, description: ?string, customFields: array<string, string|int>, quantity: ?float}>
      */
     private $lines = [];
 
@@ -345,16 +345,22 @@ class NewInvoice
 
     /**
      *
-     * @todo Add support for more features of InvoiceLine such as custom currency per line, ewallet/banking message, tax related and GL account settings, etc.
-     *
-     * @param float $amount
+     * @param float $netAmount
      * @param string|null $description
      * @param array<string, string|int> $customFields
+     * @param float|null $quantity
      * @return void
+     * @todo Add support for more features of InvoiceLine such as custom currency per line, ewallet/banking message, tax related and GL account settings, etc.
+     *
      */
-    public function addLine(float $amount, ?string $description = null, array $customFields = []): void
+    public function addLine(float $netAmount, ?string $description = null, array $customFields = [], ?float $quantity = null): void
     {
-        $this->lines[] = ['amount'=>$amount, 'description'=>$description, 'customFields'=>$customFields];
+        $this->lines[] = [
+          'netAmount'=>$netAmount,
+          'description'=>$description,
+          'customFields'=>$customFields,
+          'quantity'=>$quantity
+        ];
     }
 
     /**
@@ -365,7 +371,7 @@ class NewInvoice
     {
         $arrayOfInvoiceLines = new ArrayOfInvoiceLine();
         foreach ($this->getLines() as $line) {
-            $invoiceLine = new InvoiceLine($line['amount'], 0, $line['amount']);
+            $invoiceLine = new InvoiceLine($line['netAmount'], 0, $line['netAmount']);
             $invoiceLine->setCurrency($this->getCurrency());
             if (!empty($line['description'])) {
                 $invoiceLine->setDescription($line['description']);
@@ -379,6 +385,9 @@ class NewInvoice
                     $customFields[] = $field;
                 }
                 $invoiceLine->setCustomFields($customFields);
+            }
+            if(!empty($line['quantity'])) {
+                $invoiceLine->setQuantity($line['quantity']);
             }
             $arrayOfInvoiceLines[] = $invoiceLine;
         }

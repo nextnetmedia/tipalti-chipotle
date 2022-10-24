@@ -199,16 +199,16 @@
         },
         {
             "name": "nextnetmedia/tipalti",
-            "version": "1.0.3.1",
+            "version": "1.0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextnetmedia/tipalti.git",
-                "reference": "d79fb8f4fa5a5abfa417774ba00bbfdde8952bad"
+                "reference": "8b88d9bcb9c1a4262d7bb8ac4b62d0c41378388c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextnetmedia/tipalti/zipball/d79fb8f4fa5a5abfa417774ba00bbfdde8952bad",
-                "reference": "d79fb8f4fa5a5abfa417774ba00bbfdde8952bad",
+                "url": "https://api.github.com/repos/nextnetmedia/tipalti/zipball/8b88d9bcb9c1a4262d7bb8ac4b62d0c41378388c",
+                "reference": "8b88d9bcb9c1a4262d7bb8ac4b62d0c41378388c",
                 "shasum": ""
             },
             "require": {
@@ -232,9 +232,9 @@
             "description": "Simple PHP implementation of the Tipalti iFrame and SOAP APIs",
             "support": {
                 "issues": "https://github.com/nextnetmedia/tipalti/issues",
-                "source": "https://github.com/nextnetmedia/tipalti/tree/1.0.3.1"
+                "source": "https://github.com/nextnetmedia/tipalti/tree/1.0.3.3"
             },
-            "time": "2022-09-28T15:44:45+00:00"
+            "time": "2022-09-30T16:24:05+00:00"
         },
         {
             "name": "psr/cache",
