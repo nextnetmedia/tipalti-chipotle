@@ -386,7 +386,7 @@ class NewInvoice
                 }
                 $invoiceLine->setCustomFields($customFields);
             }
-            if(!empty($line['quantity'])) {
+            if (!empty($line['quantity'])) {
                 $invoiceLine->setQuantity($line['quantity']);
             }
             $arrayOfInvoiceLines[] = $invoiceLine;
