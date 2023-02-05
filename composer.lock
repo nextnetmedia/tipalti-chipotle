@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f82d830faa81f91cfdde3947e88eae8f",
+    "content-hash": "2bdc7634d0c570f79cfad66e94dd09e5",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -205,16 +205,16 @@
         },
         {
             "name": "haydenpierce/class-finder",
-            "version": "0.5.0",
+            "version": "0.4.4",
             "source": {
                 "type": "git",
                 "url": "git@gitlab.com:hpierce1102/ClassFinder.git",
-                "reference": "94cc3ced73affe931b168f60d874e6c6e6a755cf"
+                "reference": "94c602870ddf8d4fa2d67fb9bae637d88f9bd76e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=94cc3ced73affe931b168f60d874e6c6e6a755cf",
-                "reference": "94cc3ced73affe931b168f60d874e6c6e6a755cf",
+                "url": "https://gitlab.com/api/v4/projects/hpierce1102%2FClassFinder/repository/archive.zip?sha=94c602870ddf8d4fa2d67fb9bae637d88f9bd76e",
+                "reference": "94c602870ddf8d4fa2d67fb9bae637d88f9bd76e",
                 "shasum": ""
             },
             "require": {
@@ -243,20 +243,20 @@
                 }
             ],
             "description": "A library that can provide of a list of classes in a given namespace",
-            "time": "2023-02-04T17:54:51+00:00"
+            "time": "2022-09-26T22:42:59+00:00"
         },
         {
             "name": "nextnetmedia/tipalti",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nextnetmedia/tipalti.git",
-                "reference": "da02fa2f59fa4522201deb7316f36704c5210afb"
+                "reference": "b2c63c23dd1b32ae21023a5476f9ae204e550972"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nextnetmedia/tipalti/zipball/da02fa2f59fa4522201deb7316f36704c5210afb",
-                "reference": "da02fa2f59fa4522201deb7316f36704c5210afb",
+                "url": "https://api.github.com/repos/nextnetmedia/tipalti/zipball/b2c63c23dd1b32ae21023a5476f9ae204e550972",
+                "reference": "b2c63c23dd1b32ae21023a5476f9ae204e550972",
                 "shasum": ""
             },
             "require": {
@@ -264,7 +264,7 @@
                 "ext-hash": "*",
                 "ext-json": "*",
                 "ext-soap": "*",
-                "haydenpierce/class-finder": "~0.5",
+                "haydenpierce/class-finder": "^0.4.4",
                 "php": ">=5.6"
             },
             "type": "library",
@@ -280,9 +280,9 @@
             "description": "Simple PHP implementation of the Tipalti iFrame and SOAP APIs",
             "support": {
                 "issues": "https://github.com/nextnetmedia/tipalti/issues",
-                "source": "https://github.com/nextnetmedia/tipalti/tree/1.0.4"
+                "source": "https://github.com/nextnetmedia/tipalti/tree/1.0.5"
             },
-            "time": "2023-02-04T22:12:46+00:00"
+            "time": "2023-02-05T15:22:36+00:00"
         },
         {
             "name": "psr/cache",
