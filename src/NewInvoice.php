@@ -35,6 +35,11 @@ class NewInvoice
      */
     private $invoiceIdentifier;
     /**
+     * A string or integer which is used as the displayed "invoice number" in the Tipalti interface
+     * @var string|int|null
+     */
+    private $invoiceNumber;
+    /**
      * @var array<string, string|int>
      */
     private $fields = [];
@@ -100,6 +105,9 @@ class NewInvoice
     {
         $invoice = new TipaltiInvoiceItemRequest($this->getInvoiceDate(), $this->isCanApprove(), $this->isPaidManually());
         $invoice->setIdap($this->getIdap());
+        if (!empty($this->getInvoiceNumber())) {
+            $invoice->setInvoiceNumber($this->getInvoiceNumber());
+        }
         $invoice->setInvoiceRefCode($this->getRefcode());
         if ($this->getInvoiceDueDate() instanceof DateTime) {
             $invoice->setInvoiceDueDate($this->getInvoiceDueDate());
@@ -142,6 +150,22 @@ class NewInvoice
     public function getInvoiceIdentifier()
     {
         return $this->invoiceIdentifier;
+    }
+
+    /**
+     * @param int|string|null $invoiceNumber
+     */
+    public function setInvoiceNumber($invoiceNumber): void
+    {
+        $this->invoiceNumber = $invoiceNumber;
+    }
+
+    /**
+     * @return int|string|null
+     */
+    public function getInvoiceNumber()
+    {
+        return $this->invoiceNumber;
     }
 
     /**
