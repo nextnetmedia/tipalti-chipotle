@@ -32,6 +32,11 @@ class iFrame
     ];
 
     /**
+     * Default style for the iFrame
+     */
+    const DEFAULT_STYLE = "border: none; margin-top: 20px; margin-bottom: 20px;";
+
+    /**
      * @param TipaltiPayer $client
      */
     public function __construct(TipaltiPayer $client)
@@ -112,12 +117,13 @@ class iFrame
      * @param string $payeeIdentifier
      * @param array $extraParameters
      * @param string $style
+     * @param int $height
      * @return string
      * @throws Exception
      */
-    public function getiFrameHTML(string $type, string $payeeIdentifier, array $extraParameters = [], string $style = "border: none; margin-top: 20px; margin-bottom: 20px;"): string
+    public function getiFrameHTML(string $type, string $payeeIdentifier, array $extraParameters = [], string $style = self::DEFAULT_STYLE, $height = 200): string
     {
         $url = $this->getiFrameUrl($type, $payeeIdentifier, $extraParameters);
-        return '<iframe width="100%" height="200" style="' . $style . '" src="' . $url . '" id="tipaltiEmbed"></iframe><script>tipaltiiFrameResize=function(t){t.data&&t.data.TipaltiIframeInfo&&t.data.TipaltiIframeInfo.height&&(document.getElementById("tipaltiEmbed").height=t.data.TipaltiIframeInfo.height)},window.addEventListener?window.addEventListener("message",tipaltiiFrameResize,!1):window.attachEvent("onmessage",tipaltiiFrameResize);</script>';
+        return '<iframe width="100%" height="' . $height . '" style="' . $style . '" src="' . $url . '" id="tipaltiEmbed"></iframe><script>tipaltiiFrameResize=function(t){t.data&&t.data.TipaltiIframeInfo&&t.data.TipaltiIframeInfo.height&&(document.getElementById("tipaltiEmbed").height=t.data.TipaltiIframeInfo.height)},window.addEventListener?window.addEventListener("message",tipaltiiFrameResize,!1):window.attachEvent("onmessage",tipaltiiFrameResize);</script>';
     }
 }
