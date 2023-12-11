@@ -34,7 +34,7 @@ class iFrame
     /**
      * Default style for the iFrame
      */
-    const DEFAULT_STYLE = "border: none; margin-top: 20px; margin-bottom: 20px;";
+    public const DEFAULT_STYLE = "border: none; margin-top: 20px; margin-bottom: 20px;";
 
     /**
      * @param TipaltiPayer $client
