@@ -58,7 +58,7 @@ class iFrame
      */
     public function getPayeeHome(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false, $height = self::IFRAME_DEFAULT_HEIGHT): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("home", $payeeIdentifier, $extraParameters, $height);
+        return !$fullHtml ? $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("home", $payeeIdentifier, $extraParameters, self::DEFAULT_STYLE, $height);
     }
 
     /**
@@ -70,7 +70,7 @@ class iFrame
      */
     public function getPayeeInvoiceHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false, $height = self::IFRAME_DEFAULT_HEIGHT): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("invoices", $payeeIdentifier, $extraParameters, $height);
+        return !$fullHtml ? $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("invoices", $payeeIdentifier, $extraParameters, self::DEFAULT_STYLE, $height);
     }
 
     /**
@@ -82,7 +82,7 @@ class iFrame
      */
     public function getPayeePaymentHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false, $height = self::IFRAME_DEFAULT_HEIGHT): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("payments", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("payments", $payeeIdentifier, $extraParameters, $height);
+        return !$fullHtml ? $this->getiFrameUrl("payments", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("payments", $payeeIdentifier, $extraParameters, self::DEFAULT_STYLE, $height);
     }
 
     /**
