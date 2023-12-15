@@ -15,6 +15,11 @@ class iFrame
     private $client;
 
     /**
+     * Default height for the iFrame
+     */
+    const IFRAME_DEFAULT_HEIGHT = 200;
+
+    /**
      * The base URL's provided by Tipalti for each environment
      */
     private const IFRAME_BASE_URLS = [
@@ -34,7 +39,7 @@ class iFrame
     /**
      * Default style for the iFrame
      */
-    const DEFAULT_STYLE = "border: none; margin-top: 20px; margin-bottom: 20px;";
+    public const DEFAULT_STYLE = "border: none; margin-top: 20px; margin-bottom: 20px;";
 
     /**
      * @param TipaltiPayer $client
@@ -51,9 +56,9 @@ class iFrame
      * @return string
      * @throws Exception
      */
-    public function getPayeeHome(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false): string
+    public function getPayeeHome(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false, $height = self::IFRAME_DEFAULT_HEIGHT): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("home", $payeeIdentifier, $extraParameters);
+        return !$fullHtml ? $this->getiFrameUrl("home", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("home", $payeeIdentifier, $extraParameters, $height);
     }
 
     /**
@@ -63,9 +68,9 @@ class iFrame
      * @return string
      * @throws Exception
      */
-    public function getPayeeInvoiceHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false): string
+    public function getPayeeInvoiceHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false, $height = self::IFRAME_DEFAULT_HEIGHT): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("invoices", $payeeIdentifier, $extraParameters);
+        return !$fullHtml ? $this->getiFrameUrl("invoices", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("invoices", $payeeIdentifier, $extraParameters, $height);
     }
 
     /**
@@ -75,9 +80,9 @@ class iFrame
      * @return string
      * @throws Exception
      */
-    public function getPayeePaymentHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false): string
+    public function getPayeePaymentHistory(string $payeeIdentifier, array $extraParameters = [], bool $fullHtml = false, $height = self::IFRAME_DEFAULT_HEIGHT): string
     {
-        return !$fullHtml ? $this->getiFrameUrl("payments", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("payments", $payeeIdentifier, $extraParameters);
+        return !$fullHtml ? $this->getiFrameUrl("payments", $payeeIdentifier, $extraParameters) : $this->getiFrameHTML("payments", $payeeIdentifier, $extraParameters, $height);
     }
 
     /**
@@ -121,7 +126,7 @@ class iFrame
      * @return string
      * @throws Exception
      */
-    public function getiFrameHTML(string $type, string $payeeIdentifier, array $extraParameters = [], string $style = self::DEFAULT_STYLE, $height = 200): string
+    public function getiFrameHTML(string $type, string $payeeIdentifier, array $extraParameters = [], string $style = self::DEFAULT_STYLE, $height = self::IFRAME_DEFAULT_HEIGHT): string
     {
         $url = $this->getiFrameUrl($type, $payeeIdentifier, $extraParameters);
         return '<iframe width="100%" height="' . $height . '" style="' . $style . '" src="' . $url . '" id="tipaltiEmbed"></iframe><script>tipaltiiFrameResize=function(t){t.data&&t.data.TipaltiIframeInfo&&t.data.TipaltiIframeInfo.height&&(document.getElementById("tipaltiEmbed").height=t.data.TipaltiIframeInfo.height)},window.addEventListener?window.addEventListener("message",tipaltiiFrameResize,!1):window.attachEvent("onmessage",tipaltiiFrameResize);</script>';
