@@ -17,7 +17,7 @@ class iFrame
     /**
      * Default height for the iFrame
      */
-    const IFRAME_DEFAULT_HEIGHT = 200;
+    public const IFRAME_DEFAULT_HEIGHT = 200;
 
     /**
      * The base URL's provided by Tipalti for each environment
